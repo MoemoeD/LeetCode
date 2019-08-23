@@ -12,8 +12,8 @@ namespace LeetCode
         {
             #region 2. 两数相加
 
-            Console.WriteLine("342 + 465 = " + ResolveListNode(AddTwoNumbers(MakeListNode("342"), MakeListNode("465"))));
-            Console.WriteLine("5 + 5 = " + ResolveListNode(AddTwoNumbers(MakeListNode("5"), MakeListNode("5"))));
+            //Console.WriteLine("342 + 465 = " + ResolveListNode(AddTwoNumbers(MakeListNode("342"), MakeListNode("465"))));
+            //Console.WriteLine("5 + 5 = " + ResolveListNode(AddTwoNumbers(MakeListNode("5"), MakeListNode("5"))));
 
             #endregion
 
@@ -27,6 +27,12 @@ namespace LeetCode
             //Console.WriteLine(LongestValidParentheses(")(((((()())()()))()(()))(") == 22 ? "Yes" : "No");
             //Console.WriteLine(LongestValidParentheses("()(()") == 2 ? "Yes" : "No");
             //Console.WriteLine(LongestValidParentheses("") == 0 ? "Yes" : "No");
+
+            #endregion
+
+            #region 292. Nim 游戏
+
+            //Console.WriteLine(CanWinNim(4) ? "Yes" : "No");
 
             #endregion
 
@@ -201,6 +207,15 @@ namespace LeetCode
             len.Add(0);
 
             return len.Max() * 2;
+        }
+
+        #endregion
+
+        #region 292. Nim 游戏
+
+        public static bool CanWinNim(int n)
+        {
+            return n % 4 == 0 ? false : true;
         }
 
         #endregion
