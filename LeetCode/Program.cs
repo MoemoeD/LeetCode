@@ -36,6 +36,12 @@ namespace LeetCode
 
             #endregion
 
+            #region 848. 字母移位
+
+            Console.WriteLine(ShiftingLetters("abc", new[] { 3, 5, 9 }) == "rpl" ? "Yes" : "No");
+
+            #endregion
+
             Console.ReadKey();
         }
 
@@ -216,6 +222,15 @@ namespace LeetCode
         public static bool CanWinNim(int n)
         {
             return n % 4 == 0 ? false : true;
+        }
+
+        #endregion
+
+        #region 848. 字母移位
+
+        public static string ShiftingLetters(string S, int[] shifts)
+        {
+            return "";
         }
 
         #endregion
