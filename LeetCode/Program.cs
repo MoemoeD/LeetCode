@@ -230,7 +230,44 @@ namespace LeetCode
 
         public static string ShiftingLetters(string S, int[] shifts)
         {
+            char[] ac = S.ToCharArray();
+
+            if (shifts.Length <= ac.Length)
+            {
+                int sum = 0;
+                for (int i = shifts.Length - 1; i >= 0; i--)
+                {
+                    sum += shifts[i];
+                    ac[i] = MoveS(ac[i], sum);
+                }
+            }
+            else
+            {
+                for (int i = shifts.Length - 1; i >= 0; i--)
+                {
+
+
+                }
+
+                for (int i = ac.Length - 1; i >= 0; i--)
+                {
+
+                }
+
+            }
+
+
             return "";
+        }
+
+        public static char MoveS(char s, int t)
+        {
+            int ints = (int)s + t % 26;
+            if (ints > 122)
+            {
+                ints = ints - 26;
+            }
+            return (char)ints;
         }
 
         #endregion
