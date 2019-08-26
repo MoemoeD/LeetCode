@@ -235,24 +235,24 @@ namespace LeetCode
 
             if (shifts.Length <= ac.Length)
             {
-                long sum = 0;
+                int sum = 0;
                 for (int i = shifts.Length - 1; i >= 0; i--)
                 {
-                    sum += shifts[i];
+                    sum += shifts[i] % 26;
                     ac[i] = MoveS(ac[i], sum);
                 }
             }
             else
             {
-                long sum = 0;
+                int sum = 0;
                 for (int i = shifts.Length - 1; i > ac.Length - 1; i--)
                 {
-                    sum += shifts[i];
+                    sum += shifts[i] % 26;
                 }
 
                 for (int i = ac.Length - 1; i >= 0; i--)
                 {
-                    sum += shifts[i];
+                    sum += shifts[i] % 26;
                     ac[i] = MoveS(ac[i], sum);
                 }
             }
@@ -260,9 +260,9 @@ namespace LeetCode
             return new string(ac);
         }
 
-        public static char MoveS(char s, long t)
+        public static char MoveS(char s, int t)
         {
-            long ints = (long)s + t % 26;
+            int ints = (int)s + t % 26;
             if (ints > 122)
             {
                 ints = ints - 26;
