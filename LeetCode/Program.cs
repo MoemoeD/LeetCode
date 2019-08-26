@@ -38,7 +38,8 @@ namespace LeetCode
 
             #region 848. 字母移位
 
-            Console.WriteLine(ShiftingLetters("abc", new[] { 3, 5, 9 }) == "rpl" ? "Yes" : "No");
+            //Console.WriteLine(ShiftingLetters("abc", new[] { 3, 5, 9 }) == "rpl" ? "Yes" : "No");
+            //Console.WriteLine(ShiftingLetters("mkgfzkkuxownxvfvxasy", new[] { 505870226, 437526072, 266740649, 224336793, 532917782, 311122363, 567754492, 595798950, 81520022, 684110326, 137742843, 275267355, 856903962, 148291585, 919054234, 467541837, 622939912, 116899933, 983296461, 536563513 }) == "wqqwlcjnkphhsyvrkdod" ? "Yes" : "No");
 
             #endregion
 
@@ -234,7 +235,7 @@ namespace LeetCode
 
             if (shifts.Length <= ac.Length)
             {
-                int sum = 0;
+                long sum = 0;
                 for (int i = shifts.Length - 1; i >= 0; i--)
                 {
                     sum += shifts[i];
@@ -243,26 +244,25 @@ namespace LeetCode
             }
             else
             {
-                for (int i = shifts.Length - 1; i >= 0; i--)
+                long sum = 0;
+                for (int i = shifts.Length - 1; i > ac.Length - 1; i--)
                 {
-
-
+                    sum += shifts[i];
                 }
 
                 for (int i = ac.Length - 1; i >= 0; i--)
                 {
-
+                    sum += shifts[i];
+                    ac[i] = MoveS(ac[i], sum);
                 }
-
             }
 
-
-            return "";
+            return new string(ac);
         }
 
-        public static char MoveS(char s, int t)
+        public static char MoveS(char s, long t)
         {
-            int ints = (int)s + t % 26;
+            long ints = (long)s + t % 26;
             if (ints > 122)
             {
                 ints = ints - 26;
