@@ -17,6 +17,13 @@ namespace LeetCode
 
             #endregion
 
+            #region 4. 寻找两个有序数组的中位数
+
+            Console.WriteLine(FindMedianSortedArrays(new[] { 1, 3 }, new[] { 2 }) == 2.0 ? "Yes" : "No");
+            Console.WriteLine(FindMedianSortedArrays(new[] { 1, 2 }, new[] { 3, 4 }) == 2.5 ? "Yes" : "No");
+
+            #endregion
+
             #region 32. 最长有效括号
 
             //Console.WriteLine(LongestValidParentheses("(()") == 2 ? "Yes" : "No");
@@ -140,6 +147,49 @@ namespace LeetCode
             res = new ListNode(intr);
 
             Add2(l1.next, l2.next, isTen, ref res.next);
+        }
+
+        #endregion
+
+        #region 4. 寻找两个有序数组的中位数
+
+        public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
+        {
+            if (nums1.Length == 0)
+            {
+                return FindMedian(nums2);
+            }
+            if (nums2.Length == 0)
+            {
+                return FindMedian(nums1);
+            }
+
+            double med1 = FindMedian(nums1);
+            double med2 = FindMedian(nums2);
+
+            if (med1 == med2)
+            {
+                return med1;
+            }
+
+
+
+
+
+
+            return 0;
+        }
+
+        public static double FindMedian(int[] num)
+        {
+            if (num.Length % 2 == 0)
+            {
+                return (num[num.Length / 2] + num[num.Length / 2 - 1]) / 2.0;
+            }
+            else
+            {
+                return num[(num.Length - 1) / 2];
+            }
         }
 
         #endregion
