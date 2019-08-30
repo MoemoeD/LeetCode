@@ -172,9 +172,56 @@ namespace LeetCode
                 return med1;
             }
 
+            int[] min;
+            int[] max;
+            double minMed;
+            double maxMed;
 
+            if (med1 < med2)
+            {
+                min = nums1;
+                max = nums2;
+                minMed = med1;
+                maxMed = med2;
+            }
+            else
+            {
+                min = nums2;
+                max = nums1;
+                minMed = med2;
+                maxMed = med1;
+            }
 
+            int intfro = 0;
+            int intbeh = 0;
+            int intmaxt = 0;
+            int intmint = 0;
 
+            for (int i = 0; i <= max.Length - 1; i++)
+            {
+                if (max[i] <= minMed)
+                {
+                    intfro++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            intmint = intfro + min.Length % 2 == 0 ? min.Length / 2 : (min.Length / 2 + 1);
+
+            for (int i = min.Length - 1; i >= 0; i--)
+            {
+                if (min[i] >= maxMed)
+                {
+                    intbeh++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            intmaxt = intbeh + max.Length % 2 == 0 ? max.Length / 2 : (max.Length / 2 + 1);
 
 
             return 0;
