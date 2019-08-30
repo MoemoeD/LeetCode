@@ -196,6 +196,7 @@ namespace LeetCode
             int intbeh = 0;
             int intmaxt = 0;
             int intmint = 0;
+            int intmedt = 0;
 
             for (int i = 0; i <= max.Length - 1; i++)
             {
@@ -222,6 +223,8 @@ namespace LeetCode
                 }
             }
             intmaxt = intbeh + max.Length % 2 == 0 ? max.Length / 2 : (max.Length / 2 + 1);
+
+            intmedt = (min.Length + max.Length) % 2 == 0 ? (min.Length + max.Length) / 2 : (min.Length + max.Length - 1) / 2;
 
 
             return 0;
