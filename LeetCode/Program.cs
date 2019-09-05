@@ -27,6 +27,7 @@ namespace LeetCode
                                                    ) == 15839.0 ? "Yes" : "No");
             Console.WriteLine(FindMedianSortedArrays(new[] { 1, 2 }, new[] { -1, 3 }) == 1.5 ? "Yes" : "No");
             Console.WriteLine(FindMedianSortedArrays(new[] { 2 }, new[] { 1, 3, 4 }) == 2.5 ? "Yes" : "No");
+            Console.WriteLine(FindMedianSortedArrays(new[] { 1, 2 }, new[] { 3, 4, 5, 6 }) == 3.5 ? "Yes" : "No");
 
             #endregion
 
@@ -175,31 +176,44 @@ namespace LeetCode
                 {
                     int skip = nums2.Length / 2 - 1;
                     nums2 = nums2.Take(nums2.Length - skip).Skip(skip).ToArray();
-
-
-
                 }
                 else if (nums2.Length <= 2 && nums1.Length > 2)
                 {
-
+                    int skip = nums1.Length / 2 - 1;
+                    nums1 = nums1.Take(nums1.Length - skip).Skip(skip).ToArray();
                 }
 
-                if (nums1.Length == 1 && nums2.Length == 1)
+                List<int> nums = new List<int>();
+                int n1 = 0;
+                int n2 = 0;
+                for (int i = 0; i < (nums1.Length + nums2.Length); i++)
                 {
-                    return (nums1[0] + nums2[0]) / 2.0;
+                    if (n1 == nums1.Length)
+                    {
+                        nums.Add(nums2[n2]);
+                        n2++;
+                        continue;
+                    }
+                    if (n2 == nums2.Length)
+                    {
+                        nums.Add(nums1[n1]);
+                        n1++;
+                        continue;
+                    }
+
+                    if (nums1[n1] > nums2[n2])
+                    {
+                        nums.Add(nums2[n2]);
+                        n2++;
+                    }
+                    else
+                    {
+                        nums.Add(nums1[n1]);
+                        n1++;
+                    }
                 }
-                else if (nums1.Length == 1 && nums2.Length == 2)
-                {
-                    return Math.Min(Math.Max(nums1[0], nums2[0]), nums2[1]);
-                }
-                else if (nums1.Length == 2 && nums2.Length == 1)
-                {
-                    return Math.Min(Math.Max(nums1[0], nums2[0]), nums1[1]);
-                }
-                else if (nums1.Length == 2 && nums2.Length == 2)
-                {
-                    return (Math.Max(nums1[0], nums2[0]) + Math.Min(nums1[1], nums2[1])) / 2.0;
-                }
+
+                return FindMedian(nums.ToArray());
             }
 
             double med1 = FindMedian(nums1);
