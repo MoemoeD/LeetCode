@@ -46,6 +46,14 @@ namespace LeetCode
 
             #endregion
 
+            #region 289. 生命游戏
+
+            int[][] arr1 = new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } };
+            GameOfLife(arr1);
+            Console.WriteLine(arr1 == new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } } ? "Yes" : "No");
+
+            #endregion
+
             #region 292. Nim 游戏
 
             //Console.WriteLine(CanWinNim(4) ? "Yes" : "No");
@@ -320,6 +328,63 @@ namespace LeetCode
             len.Add(0);
 
             return len.Max() * 2;
+        }
+
+        #endregion
+
+        #region 289. 生命游戏
+
+        public static void GameOfLife(int[][] board)
+        {
+        }
+
+        public class Postion
+        {
+            public Postion(int x, int y, int gameX, int gameY, int[][] board)
+            {
+                this.x = x;
+                this.y = y;
+                this.gameX = gameX;
+                this.gameY = gameY;
+                this.board = board;
+            }
+
+            public int x { get; set; }
+
+            public int y { get; set; }
+
+            public int gameX { get; set; }
+
+            public int gameY { get; set; }
+
+            public int[][] board { get; set; }
+
+            //演化
+            public int setNewState()
+            {
+                int count = 0;
+                for (int i = -1; i <= 1; i++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (i == 0 && j == 0)
+                            continue;
+                        if (this.x + i < 0 || this.x + i >= gameX || this.y + j < 0 || this.y + j >= gameY)
+                            continue;
+                        if (board[this.x + i][this.y + j] % 2 == 1)
+                            count++;
+                    }
+                }
+
+                //if (count < 2 || count > 3)
+                //    return false;
+                //else if (count == 3)
+                //    return true;
+                //else
+                //    return board[this.x][this.y] == 1;
+
+                return 0;
+            }
         }
 
         #endregion
