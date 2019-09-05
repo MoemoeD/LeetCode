@@ -29,6 +29,7 @@ namespace LeetCode
             Console.WriteLine(FindMedianSortedArrays(new[] { 2 }, new[] { 1, 3, 4 }) == 2.5 ? "Yes" : "No");
             Console.WriteLine(FindMedianSortedArrays(new[] { 1, 2 }, new[] { 3, 4, 5, 6 }) == 3.5 ? "Yes" : "No");
             Console.WriteLine(FindMedianSortedArrays(new[] { 1, 2, 5 }, new[] { 3, 4, 6 }) == 3.5 ? "Yes" : "No");
+            Console.WriteLine(FindMedianSortedArrays(new[] { 1, 2, 6, 7 }, new[] { 3, 4, 5, 8 }) == 4.5 ? "Yes" : "No");
 
             #endregion
 
@@ -173,17 +174,6 @@ namespace LeetCode
             }
             if (nums1.Length <= 2 || nums2.Length <= 2)
             {
-                //if (nums1.Length <= 2 && nums2.Length > 2)
-                //{
-                //    int skip = nums2.Length / 2 - 1;
-                //    nums2 = nums2.Take(nums2.Length - skip).Skip(skip).ToArray();
-                //}
-                //else if (nums2.Length <= 2 && nums1.Length > 2)
-                //{
-                //    int skip = nums1.Length / 2 - 1;
-                //    nums1 = nums1.Take(nums1.Length - skip).Skip(skip).ToArray();
-                //}
-
                 List<int> nums = new List<int>();
                 int n1 = 0;
                 int n2 = 0;
@@ -229,11 +219,11 @@ namespace LeetCode
 
             if (nums1.Length > nums2.Length)
             {
-                del = nums2.Length - nums2.Length / 2;
+                del = (nums2.Length % 2) == 0 ? nums2.Length / 2 - 1 : nums2.Length / 2;
             }
             else
             {
-                del = nums1.Length - nums1.Length / 2;
+                del = (nums1.Length % 2) == 0 ? nums1.Length / 2 - 1 : nums1.Length / 2;
             }
 
             if (med1 > med2)
