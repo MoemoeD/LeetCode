@@ -48,9 +48,7 @@ namespace LeetCode
 
             #region 289. 生命游戏
 
-            int[][] arr1 = new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } };
-            GameOfLife(arr1);
-            Console.WriteLine(arr1 == new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } } ? "Yes" : "No");
+            //GameOfLife(new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } });
 
             #endregion
 
@@ -336,16 +334,35 @@ namespace LeetCode
 
         public static void GameOfLife(int[][] board)
         {
+            for (int i = 0; i < board.Length; i++)
+            {
+                for (int j = 0; j < board[0].Length; j++)
+                {
+                    Postion p = new Postion(i, j, board);
+                    board[i][j] = p.setNewState();
+                }
+            }
+
+            for (int i = 0; i < board.Length; i++)
+            {
+                for (int j = 0; j < board[0].Length; j++)
+                {
+                    if (board[i][j] == 2)
+                        board[i][j] = 1;
+                    else if (board[i][j] == 3)
+                        board[i][j] = 0;
+                }
+            }
         }
 
         public class Postion
         {
-            public Postion(int x, int y, int gameX, int gameY, int[][] board)
+            public Postion(int x, int y, int[][] board)
             {
                 this.x = x;
                 this.y = y;
-                this.gameX = gameX;
-                this.gameY = gameY;
+                this.gameX = board.Length;
+                this.gameY = board[0].Length;
                 this.board = board;
             }
 
@@ -359,7 +376,7 @@ namespace LeetCode
 
             public int[][] board { get; set; }
 
-            //演化
+            //演化   0->0:0  1->1:1  0->1:2  1->0:3
             public int setNewState()
             {
                 int count = 0;
@@ -376,14 +393,22 @@ namespace LeetCode
                     }
                 }
 
-                //if (count < 2 || count > 3)
-                //    return false;
-                //else if (count == 3)
-                //    return true;
-                //else
-                //    return board[this.x][this.y] == 1;
-
-                return 0;
+                int stateOld = board[this.x][this.y];
+                if (stateOld == 1)
+                {
+                    if (count < 2 || count > 3)
+                    {
+                        return stateOld + 2;
+                    }
+                }
+                else if (stateOld == 0)
+                {
+                    if (count == 3)
+                    {
+                        return stateOld + 2;
+                    }
+                }
+                return stateOld;
             }
         }
 
