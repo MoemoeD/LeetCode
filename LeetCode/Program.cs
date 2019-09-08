@@ -411,21 +411,41 @@ namespace LeetCode
 
         public static int MaxProfitIII(int[] prices)
         {
-            if (prices.Length == 0)
+            if (prices.Length <= 1)
             {
                 return 0;
             }
 
-            int profit = 0;
-            for (int i = 1; i < prices.Length; i++)
+            List<p> profit = new List<p> { };
+
+            int[][][] p = new int[prices.Length][][];
+
+            for (int i = 0; i < prices.Length; i++)
             {
-                if (prices[i - 1] < prices[i])
+                if (i == 0)
                 {
-                    profit += prices[i] - prices[i - 1];
+
                 }
             }
 
-            return profit;
+            return 0;
+        }
+
+        public class p
+        {
+            public int day { get; set; }
+
+            public int time { get; set; }
+
+            public holdType type { get; set; }
+
+            public int profit { get; set; }
+
+            public enum holdType
+            {
+                hold,
+                notHold
+            }
         }
 
         #endregion
