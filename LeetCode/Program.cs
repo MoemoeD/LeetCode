@@ -57,6 +57,7 @@ namespace LeetCode
 
             Console.WriteLine(MaxProfitII(new int[] { 7, 1, 5, 3, 6, 4 }) == 7 ? "Yes" : "No");
             Console.WriteLine(MaxProfitII(new int[] { 1, 2, 3, 4, 5 }) == 4 ? "Yes" : "No");
+            Console.WriteLine(MaxProfitII(new int[] { 7, 6, 4, 3, 1 }) == 0 ? "Yes" : "No");
 
             #endregion
 
@@ -379,7 +380,21 @@ namespace LeetCode
 
         public static int MaxProfitII(int[] prices)
         {
-            return 0;
+            if (prices.Length == 0)
+            {
+                return 0;
+            }
+
+            int profit = 0;
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (prices[i - 1] < prices[i])
+                {
+                    profit += prices[i] - prices[i - 1];
+                }
+            }
+
+            return profit;
         }
 
         #endregion
