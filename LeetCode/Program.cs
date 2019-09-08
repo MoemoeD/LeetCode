@@ -48,8 +48,8 @@ namespace LeetCode
 
             #region 121. 买卖股票的最佳时机
 
-            Console.WriteLine(MaxProfit(new int[] { 7, 1, 5, 3, 6, 4 }) == 5 ? "Yes" : "No");
-            Console.WriteLine(MaxProfit(new int[] { 7, 6, 4, 3, 1 }) == 0 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfit(new int[] { 7, 1, 5, 3, 6, 4 }) == 5 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfit(new int[] { 7, 6, 4, 3, 1 }) == 0 ? "Yes" : "No");
 
             #endregion
 
@@ -341,7 +341,29 @@ namespace LeetCode
 
         public static int MaxProfit(int[] prices)
         {
-            return 0;
+            if (prices.Length == 0)
+            {
+                return 0;
+            }
+
+            int min = prices[0];
+            int profit = 0;
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (min < prices[i])
+                {
+                    if (prices[i] - min > profit)
+                    {
+                        profit = prices[i] - min;
+                    }
+                }
+                else if (min > prices[i])
+                {
+                    min = prices[i];
+                }
+            }
+
+            return profit;
         }
 
         #endregion
