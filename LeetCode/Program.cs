@@ -61,6 +61,14 @@ namespace LeetCode
 
             #endregion
 
+            #region 123. 买卖股票的最佳时机 III
+
+            Console.WriteLine(MaxProfitIII(new int[] { 3, 3, 5, 0, 0, 3, 1, 4 }) == 6 ? "Yes" : "No");
+            Console.WriteLine(MaxProfitIII(new int[] { 1, 2, 3, 4, 5 }) == 4 ? "Yes" : "No");
+            Console.WriteLine(MaxProfitIII(new int[] { 7, 6, 4, 3, 1 }) == 0 ? "Yes" : "No");
+
+            #endregion
+
             #region 289. 生命游戏
 
             //GameOfLife(new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } });
@@ -379,6 +387,29 @@ namespace LeetCode
         #region 122. 买卖股票的最佳时机 II
 
         public static int MaxProfitII(int[] prices)
+        {
+            if (prices.Length == 0)
+            {
+                return 0;
+            }
+
+            int profit = 0;
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (prices[i - 1] < prices[i])
+                {
+                    profit += prices[i] - prices[i - 1];
+                }
+            }
+
+            return profit;
+        }
+
+        #endregion
+
+        #region 123. 买卖股票的最佳时机 III
+
+        public static int MaxProfitIII(int[] prices)
         {
             if (prices.Length == 0)
             {
