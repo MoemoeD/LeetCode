@@ -418,7 +418,7 @@ namespace LeetCode
 
             List<p> profit = new List<p> { };
 
-            int[][][] p = new int[prices.Length][][];
+            int[, ,] p = new int[prices.Length, 2, 2];
 
             for (int i = 0; i < prices.Length; i++)
             {
@@ -429,23 +429,6 @@ namespace LeetCode
             }
 
             return 0;
-        }
-
-        public class p
-        {
-            public int day { get; set; }
-
-            public int time { get; set; }
-
-            public holdType type { get; set; }
-
-            public int profit { get; set; }
-
-            public enum holdType
-            {
-                hold,
-                notHold
-            }
         }
 
         #endregion
