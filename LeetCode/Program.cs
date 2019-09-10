@@ -416,15 +416,12 @@ namespace LeetCode
                 return 0;
             }
 
-            List<p> profit = new List<p> { };
-
             int[, ,] p = new int[prices.Length, 2, 2];
 
             for (int i = 0; i < prices.Length; i++)
             {
-                if (i == 0)
+                for (int j = 0; j <= 1; j++)
                 {
-
                 }
             }
 
