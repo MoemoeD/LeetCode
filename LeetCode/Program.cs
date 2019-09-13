@@ -63,9 +63,9 @@ namespace LeetCode
 
             #region 123. 买卖股票的最佳时机 III
 
-            Console.WriteLine(MaxProfitIII(new int[] { 3, 3, 5, 0, 0, 3, 1, 4 }) == 6 ? "Yes" : "No");
-            Console.WriteLine(MaxProfitIII(new int[] { 1, 2, 3, 4, 5 }) == 4 ? "Yes" : "No");
-            Console.WriteLine(MaxProfitIII(new int[] { 7, 6, 4, 3, 1 }) == 0 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfitIII(new int[] { 3, 3, 5, 0, 0, 3, 1, 4 }) == 6 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfitIII(new int[] { 1, 2, 3, 4, 5 }) == 4 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfitIII(new int[] { 7, 6, 4, 3, 1 }) == 0 ? "Yes" : "No");
 
             #endregion
 
@@ -416,16 +416,49 @@ namespace LeetCode
                 return 0;
             }
 
-            int[, ,] p = new int[prices.Length, 2, 2];
+            //i 天数   j 次数    0 未持有    1 持有
+            int[, ,] p = new int[prices.Length, 3, 2];
 
             for (int i = 0; i < prices.Length; i++)
             {
-                for (int j = 0; j <= 1; j++)
+                for (int j = 0; j <= 2; j++)
                 {
+                    if (i / 2 + 1 < j)
+                    {
+                        p[i, j, 0] = int.MinValue;
+                        p[i, j, 1] = int.MinValue;
+
+                        continue;
+                    }
+                    if (i == 0)
+                    {
+                        p[0, j, 0] = int.MinValue;
+                        p[0, j, 1] = int.MinValue;
+                        p[0, 0, 0] = 0;
+                        p[0, 1, 1] = -prices[i];
+
+                        continue;
+                    }
+                    if (j == 0)
+                    {
+                        p[i, j, 0] = p[i - 1, j, 0];
+                        p[i, j, 1] = int.MinValue;
+
+                        continue;
+                    }
+                    p[i, j, 0] = Math.Max(p[i - 1, j, 0], p[i - 1, j, 1] + prices[i]);
+
+                    p[i, j, 1] = Math.Max(p[i - 1, j - 1, 0] - prices[i], p[i - 1, j, 1]);
                 }
             }
 
-            return 0;
+            int res = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                res = Math.Max(res, p[prices.Length - 1, i, 0]);
+            }
+
+            return res;
         }
 
         #endregion
