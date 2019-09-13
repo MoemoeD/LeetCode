@@ -69,6 +69,14 @@ namespace LeetCode
 
             #endregion
 
+            #region 188. 买卖股票的最佳时机 IV
+
+            Console.WriteLine(MaxProfitIV(2, new int[] { 2, 4, 1 }) == 2 ? "Yes" : "No");
+            Console.WriteLine(MaxProfitIV(2, new int[] { 3, 2, 6, 5, 0, 3 }) == 7 ? "Yes" : "No");
+            Console.WriteLine(MaxProfitIV(0, new int[] { 1, 3 }) == 0 ? "Yes" : "No");
+
+            #endregion
+
             #region 289. 生命游戏
 
             //GameOfLife(new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } });
@@ -454,6 +462,62 @@ namespace LeetCode
 
             int res = 0;
             for (int i = 0; i < 3; i++)
+            {
+                res = Math.Max(res, p[prices.Length - 1, i, 0]);
+            }
+
+            return res;
+        }
+
+        #endregion
+
+        #region 188. 买卖股票的最佳时机 IV
+
+        public static int MaxProfitIV(int k, int[] prices)
+        {
+            if (prices.Length <= 1 || k == 0)
+            {
+                return 0;
+            }
+
+            //i 天数   j 次数    0 未持有    1 持有
+            int[, ,] p = new int[prices.Length, k + 1, 2];
+
+            for (int i = 0; i < prices.Length; i++)
+            {
+                for (int j = 0; j <= k; j++)
+                {
+                    if (i / 2 + 1 < j)
+                    {
+                        p[i, j, 0] = int.MinValue;
+                        p[i, j, 1] = int.MinValue;
+
+                        continue;
+                    }
+                    if (i == 0)
+                    {
+                        p[0, j, 0] = int.MinValue;
+                        p[0, j, 1] = int.MinValue;
+                        p[0, 0, 0] = 0;
+                        p[0, 1, 1] = -prices[i];
+
+                        continue;
+                    }
+                    if (j == 0)
+                    {
+                        p[i, j, 0] = p[i - 1, j, 0];
+                        p[i, j, 1] = int.MinValue;
+
+                        continue;
+                    }
+                    p[i, j, 0] = Math.Max(p[i - 1, j, 0], p[i - 1, j, 1] + prices[i]);
+
+                    p[i, j, 1] = Math.Max(p[i - 1, j - 1, 0] - prices[i], p[i - 1, j, 1]);
+                }
+            }
+
+            int res = 0;
+            for (int i = 0; i <= k; i++)
             {
                 res = Math.Max(res, p[prices.Length - 1, i, 0]);
             }
