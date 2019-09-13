@@ -71,9 +71,9 @@ namespace LeetCode
 
             #region 188. 买卖股票的最佳时机 IV
 
-            Console.WriteLine(MaxProfitIV(2, new int[] { 2, 4, 1 }) == 2 ? "Yes" : "No");
-            Console.WriteLine(MaxProfitIV(2, new int[] { 3, 2, 6, 5, 0, 3 }) == 7 ? "Yes" : "No");
-            Console.WriteLine(MaxProfitIV(0, new int[] { 1, 3 }) == 0 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfitIV(2, new int[] { 2, 4, 1 }) == 2 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfitIV(2, new int[] { 3, 2, 6, 5, 0, 3 }) == 7 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfitIV(0, new int[] { 1, 3 }) == 0 ? "Yes" : "No");
 
             #endregion
 
@@ -480,6 +480,11 @@ namespace LeetCode
                 return 0;
             }
 
+            if (k > prices.Length)
+            {
+                return MaxProfitII(prices);
+            }
+
             //i 天数   j 次数    0 未持有    1 持有
             int[, ,] p = new int[prices.Length, k + 1, 2];
 
@@ -510,6 +515,7 @@ namespace LeetCode
 
                         continue;
                     }
+
                     p[i, j, 0] = Math.Max(p[i - 1, j, 0], p[i - 1, j, 1] + prices[i]);
 
                     p[i, j, 1] = Math.Max(p[i - 1, j - 1, 0] - prices[i], p[i - 1, j, 1]);
