@@ -89,6 +89,12 @@ namespace LeetCode
 
             #endregion
 
+            #region 309. 最佳买卖股票时机含冷冻期
+
+            Console.WriteLine(MaxProfitFreezing(new int[] { 1, 2, 3, 0, 2 }) == 3 ? "Yes" : "No");
+
+            #endregion
+
             #region 848. 字母移位
 
             //Console.WriteLine(ShiftingLetters("abc", new[] { 3, 5, 9 }) == "rpl" ? "Yes" : "No");
@@ -622,6 +628,70 @@ namespace LeetCode
         public static bool CanWinNim(int n)
         {
             return n % 4 == 0 ? false : true;
+        }
+
+        #endregion
+
+        #region 309. 最佳买卖股票时机含冷冻期
+
+        public static int MaxProfitFreezing(int[] prices)
+        {
+            int k = (prices.Length + 1) / 3;
+
+            if (prices.Length <= 1 || k == 0)
+            {
+                return 0;
+            }
+
+            //i 天数   j 次数    0 未持有    1 持有
+            int[, ,] p = new int[prices.Length, k + 1, 2];
+
+            for (int i = 0; i < prices.Length; i++)
+            {
+                for (int j = 0; j <= k; j++)
+                {
+                    if (i / 3 + 1 < j)
+                    {
+                        p[i, j, 0] = int.MinValue;
+                        p[i, j, 1] = int.MinValue;
+
+                        continue;
+                    }
+                    if (i <= 2)
+                    {
+                        p[0, j, 0] = int.MinValue;
+                        p[0, j, 1] = int.MinValue;
+                        p[0, 0, 0] = 0;
+                        p[0, 1, 1] = -prices[i];
+                        p[1, j, 0] = int.MinValue;
+                        p[1, j, 1] = int.MinValue;
+                        p[1, 0, 0] = 0;
+                        p[1, 1, 1] = p[0, 1, 1];
+                        p[1, 1, 0] = p[0, 1, 1] + prices[i];
+
+                        continue;
+                    }
+                    if (j == 0)
+                    {
+                        p[i, j, 0] = p[i - 1, j, 0];
+                        p[i, j, 1] = int.MinValue;
+
+                        continue;
+                    }
+
+                    p[i, j, 0] = Math.Max(p[i - 1, j, 0], p[i - 1, j, 1] + prices[i]);
+
+                    p[i, j, 1] = Math.Max(p[i - 2, j - 1, 0] - prices[i], p[i - 1, j, 1]);
+                }
+            }
+
+            int res = 0;
+            for (int i = 0; i <= k; i++)
+            {
+                res = Math.Max(res, p[prices.Length - 1, i, 0]);
+            }
+
+            return res;
         }
 
         #endregion
