@@ -666,7 +666,7 @@ namespace LeetCode
                         p[1, j, 0] = int.MinValue;
                         p[1, j, 1] = int.MinValue;
                         p[1, 0, 0] = 0;
-                        p[1, 1, 1] = p[0, 1, 1];
+                        p[1, 1, 1] = Math.Max(p[0, 1, 1], -prices[i]);
                         p[1, 1, 0] = p[0, 1, 1] + prices[i];
 
                         continue;
