@@ -77,6 +77,12 @@ namespace LeetCode
 
             #endregion
 
+            #region 206. 反转链表
+
+            //Console.WriteLine(ResolveListNode(ReverseList(MakeListNode("12345"))) == "54321" ? "Yes" : "No");
+
+            #endregion
+
             #region 289. 生命游戏
 
             //GameOfLife(new int[][] { new int[] { 0, 1, 0 }, new int[] { 0, 0, 1 }, new int[] { 1, 1, 1 }, new int[] { 0, 0, 0 } });
@@ -92,6 +98,12 @@ namespace LeetCode
             #region 309. 最佳买卖股票时机含冷冻期
 
             //Console.WriteLine(MaxProfitFreezing(new int[] { 1, 2, 3, 0, 2 }) == 3 ? "Yes" : "No");
+
+            #endregion
+
+            #region 714. 买卖股票的最佳时机含手续费
+
+            //Console.WriteLine(MaxProfitFee(new int[] { 1, 3, 2, 8, 4, 9 }, 2) == 8 ? "Yes" : "No");
 
             #endregion
 
@@ -539,6 +551,56 @@ namespace LeetCode
 
         #endregion
 
+        #region 206. 反转链表
+
+        public static void ResolveListNode(ListNode ln, ref List<int> l)
+        {
+            if (ln == null)
+            {
+                return;
+            }
+
+            l.Add(ln.val);
+            ResolveListNode(ln.next, ref l);
+        }
+
+        public static ListNode MakeListNodeRe(List<int> num)
+        {
+            ListNode res = new ListNode(Convert.ToInt32(num[num.Count() - 1]));
+            num.RemoveAt(num.Count() - 1);
+
+            MakeListNodeRe(num, ref res.next);
+
+            return res;
+        }
+
+        public static void MakeListNodeRe(List<int> num, ref ListNode res)
+        {
+            if (num.Count == 0)
+            {
+                return;
+            }
+
+            res = new ListNode(Convert.ToInt32(num[num.Count() - 1]));
+            num.RemoveAt(num.Count() - 1);
+
+            MakeListNodeRe(num, ref res.next);
+        }
+
+        public static ListNode ReverseList(ListNode head)
+        {
+            if (head == null)
+            {
+                return null;
+            }
+
+            List<int> l = new List<int>();
+            ResolveListNode(head, ref l);
+            return MakeListNodeRe(l);
+        }
+
+        #endregion
+
         #region 289. 生命游戏
 
         public static void GameOfLife(int[][] board)
@@ -692,6 +754,35 @@ namespace LeetCode
             }
 
             return res;
+        }
+
+        #endregion
+
+        #region 714. 买卖股票的最佳时机含手续费
+
+        public static int MaxProfitFee(int[] prices, int fee)
+        {
+            if (prices.Length == 0)
+            {
+                return 0;
+            }
+
+            int profit = 0;
+            int buy = prices[0];
+            for (int i = 1; i < prices.Length; i++)
+            {
+                if (buy + fee < prices[i])
+                {
+                    profit += prices[i] - buy - fee;
+                    buy = prices[i] - fee;
+                }
+                else if (prices[i] < buy)
+                {
+                    buy = prices[i];
+                }
+            }
+
+            return profit;
         }
 
         #endregion
