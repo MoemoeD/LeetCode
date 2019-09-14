@@ -91,7 +91,7 @@ namespace LeetCode
 
             #region 309. 最佳买卖股票时机含冷冻期
 
-            Console.WriteLine(MaxProfitFreezing(new int[] { 1, 2, 3, 0, 2 }) == 3 ? "Yes" : "No");
+            //Console.WriteLine(MaxProfitFreezing(new int[] { 1, 2, 3, 0, 2 }) == 3 ? "Yes" : "No");
 
             #endregion
 
@@ -657,16 +657,16 @@ namespace LeetCode
 
                         continue;
                     }
-                    if (i <= 2)
+                    if (i < 2)
                     {
                         p[0, j, 0] = int.MinValue;
                         p[0, j, 1] = int.MinValue;
                         p[0, 0, 0] = 0;
-                        p[0, 1, 1] = -prices[i];
+                        p[0, 1, 1] = -prices[0];
                         p[1, j, 0] = int.MinValue;
                         p[1, j, 1] = int.MinValue;
                         p[1, 0, 0] = 0;
-                        p[1, 1, 1] = Math.Max(p[0, 1, 1], -prices[i]);
+                        p[1, 1, 1] = Math.Max(p[0, 1, 1], -prices[1]);
                         p[1, 1, 0] = p[0, 1, 1] + prices[i];
 
                         continue;
