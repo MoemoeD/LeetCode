@@ -10,6 +10,13 @@ namespace DesignPattern
     {
         static void Main(string[] args)
         {
+            #region 单例模式
+
+            Singleton.Singleton s1 = Singleton.Singleton.Instance();
+            Singleton.Singleton s2 = Singleton.Singleton.Instance();
+
+            #endregion
+
         }
     }
 }
