@@ -24,6 +24,15 @@ namespace DesignPattern
 
             #endregion
 
+            #region 工厂方法模式
+
+            //FactoryMethod.FactoryMethod facI = new FactoryMethod.CreateProductI();
+            //FactoryMethod.Product proI = facI.create();
+            //proI.print();
+
+            #endregion
+
+            Console.ReadKey();
         }
     }
 }
