@@ -32,6 +32,14 @@ namespace DesignPattern
 
             #endregion
 
+            #region 抽象工厂模式
+
+            //AbstractFactory.AbstractFactory facPlus = new AbstractFactory.CreateProductI();
+            //AbstractFactory.ProductPlus proI = facPlus.createPlus();
+            //proI.print();
+
+            #endregion
+
             Console.ReadKey();
         }
     }
