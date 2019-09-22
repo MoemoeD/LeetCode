@@ -40,6 +40,19 @@ namespace DesignPattern
 
             #endregion
 
+            #region 建造者模式
+
+            //Builder.Manager manager = new Builder.Manager();
+            //Builder.Builder builderI = new Builder.BuilderI();
+            //Builder.Builder builderII = new Builder.BuilderII();
+
+            //manager.Construct(builderI);
+
+            //Builder.Product proI = builderI.getProduct();
+            //proI.showMsg();
+
+            #endregion
+
             Console.ReadKey();
         }
     }

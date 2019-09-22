@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractFactory\AbstractFactory.cs" />
+    <Compile Include="Builder\Builder.cs" />
     <Compile Include="FactoryMethod\FactoryMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
