@@ -12,8 +12,15 @@ namespace DesignPattern
         {
             #region 单例模式
 
-            Singleton.Singleton s1 = Singleton.Singleton.Instance();
-            Singleton.Singleton s2 = Singleton.Singleton.Instance();
+            //Singleton.Singleton s1 = Singleton.Singleton.Instance();
+            //Singleton.Singleton s2 = Singleton.Singleton.Instance();
+
+            #endregion
+
+            #region 简单工厂模式
+
+            //SimpleFactory.Product pro = SimpleFactory.SimpleFactory.create("ProductI");
+            //pro.print();
 
             #endregion
 
