@@ -53,6 +53,19 @@ namespace DesignPattern
 
             #endregion
 
+            #region 观察者模式
+
+            //Observer.Server server = new Observer.ServerI("ServerI Info");
+            //Observer.ClientI client = new Observer.ClientI("ClientI");
+
+            //server.Add(client);
+            //server.Send();
+
+            //server.Remove(client);
+            //server.Send();
+
+            #endregion
+
             Console.ReadKey();
         }
     }
